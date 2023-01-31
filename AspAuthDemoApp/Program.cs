@@ -118,6 +118,8 @@ try
 
     app.MapControllers();
 
+    DatabaseSeeder.PopulateDb(app);
+
     app.Run();
 
 }
