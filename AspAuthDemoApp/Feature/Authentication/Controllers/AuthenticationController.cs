@@ -71,7 +71,6 @@ namespace AspAuthDemoApp.Feature.Authentication.Controllers
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                     );
 
-                _logger.LogInformation("{Token}", JsonSerializer.Serialize(token));
                 _logger.LogInformation("{Username} logged in succesfully", model.Username);
                 return Ok(new TokenResponse(
                     new JwtSecurityTokenHandler().WriteToken(token),
