@@ -4,9 +4,9 @@
     {
         public string Token { get; }
 
-        public DateTime Expiration { get; }
-
         public DateTime ValidFrom { get; }
+        
+        public DateTime Expiration { get; }
 
         public TokenResponse(string token, DateTime expiration, DateTime validFrom)
         {

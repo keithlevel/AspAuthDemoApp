@@ -9,6 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
 
 namespace AspAuthDemoApp.Feature.Authentication.Controllers
 {
@@ -32,7 +33,7 @@ namespace AspAuthDemoApp.Feature.Authentication.Controllers
         }
 
         /// <summary>
-        /// Get an access token for Sacco Admin
+        /// Get an access token
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -64,15 +65,18 @@ namespace AspAuthDemoApp.Feature.Authentication.Controllers
                 var token = new JwtSecurityToken(
                     issuer: jwtConfig.ValidIssuer,
                     audience: jwtConfig.ValidAudience,
-                    expires: DateTime.UtcNow.AddHours(1),
+                    notBefore: DateTime.UtcNow.AddHours(3),
+                    expires: DateTime.UtcNow.AddHours(4),
                     claims: authClaims,
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                     );
 
+                _logger.LogInformation("{Token}", JsonSerializer.Serialize(token));
                 _logger.LogInformation("{Username} logged in succesfully", model.Username);
                 return Ok(new TokenResponse(
                     new JwtSecurityTokenHandler().WriteToken(token),
                     token.ValidTo, token.ValidFrom));
+                    //token.ValidTo, token.ValidTo.AddHours(-1)));
             }
 
             _logger.LogError("{Username} failed to login", model.Username);
@@ -85,7 +89,7 @@ namespace AspAuthDemoApp.Feature.Authentication.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost("register")]
-        [ApiExplorerSettings(IgnoreApi = true)]
+        //[ApiExplorerSettings(IgnoreApi = true)]
         public async Task<IActionResult> Register([FromBody] RegisterModel model)
         {
             var userExists = await _userManager.FindByNameAsync(model.Username);
@@ -114,7 +118,7 @@ namespace AspAuthDemoApp.Feature.Authentication.Controllers
         }
 
         /// <summary>
-        /// Create a Sacco admin
+        /// Create a demo admin
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
