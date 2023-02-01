@@ -65,8 +65,8 @@ namespace AspAuthDemoApp.Feature.Authentication.Controllers
                 var token = new JwtSecurityToken(
                     issuer: jwtConfig.ValidIssuer,
                     audience: jwtConfig.ValidAudience,
-                    notBefore: DateTime.UtcNow.AddHours(3),
-                    expires: DateTime.UtcNow.AddHours(4),
+                    //notBefore: DateTime.UtcNow.AddHours(3),
+                    expires: DateTime.UtcNow.AddHours(1),
                     claims: authClaims,
                     signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                     );
