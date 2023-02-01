@@ -8,6 +8,12 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
 	<NoWarn>1701;1702;1591</NoWarn>
+	<PackageTags>Auth; Identity;</PackageTags>
+	<PackageReleaseNotes>- Disable lockout on user creation</PackageReleaseNotes>
+	<Title>ASP .NET Auth Demo</Title>
+	<AssemblyVersion>1.0.1</AssemblyVersion>
+	<FileVersion>1.0.0.1</FileVersion>
+	<Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

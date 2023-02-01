@@ -102,7 +102,8 @@ namespace AspAuthDemoApp.Feature.Authentication.Controllers
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
+                UserName = model.Username,
+                LockoutEnabled = false
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
@@ -135,7 +136,8 @@ namespace AspAuthDemoApp.Feature.Authentication.Controllers
             {
                 Email = model.Email,
                 SecurityStamp = Guid.NewGuid().ToString(),
-                UserName = model.Username
+                UserName = model.Username,
+                LockoutEnabled = false
             };
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)

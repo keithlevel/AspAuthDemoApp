@@ -48,6 +48,7 @@ namespace AspAuthDemoApp.Data
                 Email = "johndoe@gmail.com",
                 PhoneNumber = "123456789",
                 SecurityStamp = Guid.NewGuid().ToString(),
+                LockoutEnabled = false
             };
 
             var result = await userManager.CreateAsync(demoUser, "123@Demo");
